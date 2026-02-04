@@ -21,3 +21,49 @@
 .read-the-docs {
   color: #888;
 }
+
+/* --- Improved content styles for external posts */
+.browser-css {
+  line-height: 1.8;
+  color: #1f2937; /* gray-800 */
+  font-size: 1rem;
+}
+
+.browser-css p {
+  margin-bottom: 1rem;
+}
+
+.browser-css img {
+  max-width: 100%;
+  border-radius: 0.5rem;
+}
+
+.browser-css a {
+  color: #4f46e5; /* indigo-600 */
+}
+
+.browser-css a:hover {
+  text-decoration: underline;
+}
+
+.browser-css blockquote {
+  border-left: 4px solid #c7d2fe; /* indigo-200 */
+  background: #f8fafc; /* very light */
+  padding: 0.75rem 1rem;
+  border-radius: 0.375rem;
+  margin: 1rem 0;
+}
+
+.browser-css pre {
+  background: #0f172a; /* slate-900 */
+  color: #f8fafc;
+  padding: 1rem;
+  border-radius: 0.375rem;
+  overflow: auto;
+}
+
+.browser-css code {
+  background: #f3f4f6; /* gray-100 */
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+}

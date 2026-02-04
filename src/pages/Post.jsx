@@ -25,7 +25,6 @@ export default function Post() {
     } else navigate("/");
   }, [slug, navigate]);
 
-  // new: fetch preview URL after post is loaded
   useEffect(() => {
     let mounted = true;
     setBgUrl(null);
@@ -42,12 +41,10 @@ export default function Post() {
         if (!mounted) return;
 
         if (!url) {
-          // no preview available
           setImgLoading(false);
           return;
         }
 
-        // Preload image to avoid flicker
         const img = new Image();
         img.onload = () => {
           if (mounted) {
