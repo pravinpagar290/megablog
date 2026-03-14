@@ -80,16 +80,16 @@ export default function Post() {
   };
 
   return post ? (
-    <div className="py-8">
+    <div className="min-h-[calc(100vh-80px)] bg-gray-50 py-10">
       <Container>
-        <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
-          {/* Improved preview: spinner, image, placeholder */}
-          <div className="w-full max-w-4xl rounded-xl overflow-hidden bg-gray-50">
-            <div className="relative w-full aspect-video bg-center bg-cover flex items-center justify-center">
+        <div className="mx-auto max-w-3xl rounded-2xl bg-white shadow-sm border border-gray-100 overflow-hidden">
+          {/* Cover image / placeholder */}
+          <div className="relative w-full bg-gray-50">
+            <div className="relative aspect-video flex items-center justify-center">
               {imgLoading && (
                 <div className="absolute inset-0 flex items-center justify-center bg-white/60 z-10">
                   <svg
-                    className="animate-spin h-10 w-10 text-gray-500"
+                    className="animate-spin h-8 w-8 text-gray-500"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -124,7 +124,6 @@ export default function Post() {
                   }}
                 />
               ) : !imgLoading ? (
-                // placeholder when no image available
                 <div className="flex flex-col items-center justify-center gap-2 px-4 text-gray-500">
                   <svg
                     className="h-14 w-14 text-gray-300"
@@ -157,23 +156,49 @@ export default function Post() {
             </div>
           </div>
 
-          {isAuthor && (
-            <div className="absolute right-6 top-6">
-              <Link to={`/edit-post/${post.$id}`}>
-                <Button bgColor="bg-green-500" className="mr-3">
-                  Edit
-                </Button>
-              </Link>
-              <Button bgColor="bg-red-500" onClick={deletePost}>
-                Delete
-              </Button>
+          {/* Content */}
+          <div className="px-6 pb-8 pt-6">
+            <div className="mb-4 flex items-start justify-between gap-4">
+              <div className="space-y-1">
+                <Link
+                  to="/"
+                  className="text-xs font-medium uppercase tracking-wide text-gray-400 hover:text-gray-600 transition"
+                >
+                  MegaBlog
+                </Link>
+                <h1 className="text-2xl md:text-3xl font-semibold text-gray-900 leading-snug">
+                  {post.title}
+                </h1>
+              </div>
+
+              {isAuthor && (
+                <div className="flex shrink-0 items-center gap-2">
+                  <Link to={`/edit-post/${post.$id}`}>
+                    <Button
+                      bgColor="bg-gray-900"
+                      className="px-3 py-1.5 text-sm rounded-full"
+                    >
+                      Edit
+                    </Button>
+                  </Link>
+                  <Button
+                    bgColor="bg-red-500"
+                    className="px-3 py-1.5 text-sm rounded-full"
+                    onClick={deletePost}
+                  >
+                    Delete
+                  </Button>
+                </div>
+              )}
             </div>
-          )}
+
+            <div className="h-px w-full bg-gray-100 mb-6" />
+
+            <div className="browser-css prose max-w-none">
+              {parse(post.content)}
+            </div>
+          </div>
         </div>
-        <div className="w-full mb-6">
-          <h1 className="text-2xl font-bold">{post.title}</h1>
-        </div>
-        <div className="browser-css">{parse(post.content)}</div>
       </Container>
     </div>
   ) : null;
